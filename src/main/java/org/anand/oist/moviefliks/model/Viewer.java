@@ -3,6 +3,7 @@ package org.anand.oist.moviefliks.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -17,10 +18,9 @@ public class Viewer {
 	}
 	
 	
-	public Viewer(String id, String firstName, String lastName, String userName, String email, String password,
+	public Viewer(String firstName, String lastName, String userName, String email, String password,
 			String role) {
 		super();
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
@@ -29,7 +29,8 @@ public class Viewer {
 		this.role = role;
 	}
 	@Id
-	private String id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
 	
 	private String firstName;
 	private String lastName;
@@ -39,11 +40,11 @@ public class Viewer {
 	private String userName;
 	
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

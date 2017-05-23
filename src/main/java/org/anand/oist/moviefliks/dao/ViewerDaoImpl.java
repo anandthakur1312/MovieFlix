@@ -20,7 +20,7 @@ public class ViewerDaoImpl implements ViewerDao {
 	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	
 	public void save() {
-		Viewer user = new Viewer("1", "Anand", "Thakur", "anand.thakur1312", "anand.thakur1312@gmail.com", "Myfmlyzbst1", "Admin");
+		Viewer user = new Viewer("Anand", "Thakur", "anand.thakur1312", "anand.thakur1312@gmail.com", "Myfmly", "Admin");
 		
 		Session session = sessionFactory.openSession();
 	      Transaction tx = null;
