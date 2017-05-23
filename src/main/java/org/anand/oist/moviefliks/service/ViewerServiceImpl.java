@@ -12,22 +12,24 @@ public class ViewerServiceImpl implements ViewerService {
 	ViewerDao viewerDao = new ViewerDaoImpl();
 	
 	@Override
-	public void save() {
-		viewerDao.save();
-		
-	}
-
-	@Override
 	public List<Viewer> getAllViewers() {
 		return viewerDao.getAllViewers();
-		
-		
 	}
 
 	@Override
-	public List<Viewer> createViewer(Viewer viewer) {
-		
+	public List<Viewer> createViewer(Viewer viewer) {			
 		return viewerDao.createViewer(viewer);
+	}
+
+	@Override
+	public String updateViewer(int id, Viewer viewer) {			
+		return viewerDao.updateViewer(id, viewer);
+	}
+
+	@Override
+	public String deleteViewer(int id) {
+		
+		return viewerDao.deleteViewer(id);
 	}
 
 }

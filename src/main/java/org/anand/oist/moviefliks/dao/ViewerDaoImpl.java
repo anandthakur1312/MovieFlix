@@ -20,47 +20,60 @@ public class ViewerDaoImpl implements ViewerDao {
 	
 	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	
-	public void save() {
-		Viewer user = new Viewer("Anand", "Thakur", "anand.thakur1312", "anand.thakur1312@gmail.com", "Myfmly", "Admin");
-		
-		Session session = sessionFactory.openSession();
-	      Transaction tx = null;
-	      try{
-	         tx = session.beginTransaction();
-	         session.save(user); 
-	         tx.commit();
-	      }catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      }finally {
-	         session.close(); 
-	      }
-	}
 
 	@Override
 	public List<Viewer> getAllViewers() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		List<Viewer> userList = session.createQuery("from Viewer").list();
-		for(Viewer v : userList){
+		List<Viewer> viewerList = session.createQuery("FROM Viewer").list();
+		for(Viewer v : viewerList){
 			logger.info("Person List::"+v);
-		
 		}
-		return userList;
+		return viewerList;
 	}
 
 	@Override
 	public List<Viewer> createViewer(Viewer viewer) {
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		Transaction tx = session.beginTransaction();
 		int newId = (int) session.save(viewer);
 		String hql = "FROM Viewer V WHERE V.id = :newId";
 		Query query = session.createQuery(hql);
 		query.setParameter("newId",newId);
-		
 		List<Viewer> newViewer = query.list();
+		tx.commit();
+		session.close();
 		return newViewer;
 		
 	}
+
+	@Override
+	public String updateViewer(int id, Viewer viewer){
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(viewer);
+		tx.commit();
+		session.close();
+		return "Updated Succesfully";
+	}
+
+	@Override
+	public String deleteViewer(int id) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		String hql = "delete from Viewer where id = :id";
+        Query query = session.createQuery(hql);
+        query.setParameter("id",id);
+        int rowCount = query.executeUpdate();
+        tx.commit();
+		session.close();
+		return rowCount + " Rows Affected";
+	}
+	
+
+	   public void shutdown()
+	   {
+		   sessionFactory.close();
+	   }
 
 }
