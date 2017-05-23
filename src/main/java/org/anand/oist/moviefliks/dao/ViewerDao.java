@@ -8,5 +8,6 @@ public interface ViewerDao {
 	
 	public void save();
 	public List<Viewer> getAllViewers();
+	public List<Viewer> createViewer(Viewer viewer);
 
 }

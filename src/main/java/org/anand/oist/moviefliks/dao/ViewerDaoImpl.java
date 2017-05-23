@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.anand.oist.moviefliks.model.Viewer;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -46,6 +47,20 @@ public class ViewerDaoImpl implements ViewerDao {
 		
 		}
 		return userList;
+	}
+
+	@Override
+	public List<Viewer> createViewer(Viewer viewer) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		int newId = (int) session.save(viewer);
+		String hql = "FROM Viewer V WHERE V.id = :newId";
+		Query query = session.createQuery(hql);
+		query.setParameter("newId",newId);
+		
+		List<Viewer> newViewer = query.list();
+		return newViewer;
+		
 	}
 
 }

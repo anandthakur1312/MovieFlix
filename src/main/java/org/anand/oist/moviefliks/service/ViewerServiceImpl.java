@@ -24,4 +24,10 @@ public class ViewerServiceImpl implements ViewerService {
 		
 	}
 
+	@Override
+	public List<Viewer> createViewer(Viewer viewer) {
+		
+		return viewerDao.createViewer(viewer);
+	}
+
 }

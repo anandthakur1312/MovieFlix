@@ -7,5 +7,6 @@ import org.anand.oist.moviefliks.model.Viewer;
 public interface ViewerService {
 	public void save();
 	public List<Viewer> getAllViewers();
+	public List<Viewer> createViewer(Viewer viewer);
 
 }

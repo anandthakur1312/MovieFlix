@@ -38,13 +38,14 @@ public class ViewerResource {
 	   
 	    }
 	 	
-	 	/*@POST
-	    public List<Viewer> getAllViewers() {	
-	 		 System.out.println("User Resource is here");
-	 	     return viewerService.getAllViewers();
+	 	@POST
+	    public List<Viewer> createViewer(Viewer viewer) {	
+	 		
+	 		List<Viewer> newViewer = viewerService.createViewer(viewer);
+	 		 return newViewer;
 	   
 	    }
-	 	*/
+	 	
 	 	
 	 	
 	 	
