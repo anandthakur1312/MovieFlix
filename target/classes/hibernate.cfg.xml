@@ -20,7 +20,7 @@
 
 
 
-       <mapping class="org.anand.oist.moviefliks.model.UserDetails"/>
+       <mapping class="org.anand.oist.moviefliks.model.Viewer"/>
 
     </session-factory>
 </hibernate-configuration>

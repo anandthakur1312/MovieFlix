@@ -4,18 +4,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.GenericGenerator;
 
+@XmlRootElement
 @Entity
-public class UserDetails {
+public class Viewer {
 	
-	public UserDetails() {
+	public Viewer() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public UserDetails(String id, String firstName, String lastName, String userName, String email, String password,
+	public Viewer(String id, String firstName, String lastName, String userName, String email, String password,
 			String role) {
 		super();
 		this.id = id;
